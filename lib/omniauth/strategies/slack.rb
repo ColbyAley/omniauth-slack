@@ -22,13 +22,18 @@ module OmniAuth
 
       info do
         {
-          name: user_info['user']['profile']['real_name_normalized'],
+          name: user_info['user']['profile']['real_name'],
           email: user_info['user']['profile']['email'],
-          nickname: raw_info['user'],
+          phone: user_info['user']['profile']['phone'],
+          email: user_info['user']['profile']['email'],
+          skype: user_info['user']['profile']['skype'],
+          nickname: user_info['user']['name'],
+          id_admin: user_info['user']['is_admin'],
           first_name: user_info['user']['profile']['first_name'],
           last_name: user_info['user']['profile']['last_name'],
           description: user_info['user']['profile']['title'],
-          image: user_info['user']['profile']['image_192'],
+          image_48: user_info['user']['profile']['image_48'],
+          image_192: user_info['user']['profile']['image_192'],
           team: raw_info['team'],
           user: raw_info['user'],
           team_id: raw_info['team_id'],
@@ -47,7 +52,6 @@ module OmniAuth
       def raw_info
         @raw_info ||= access_token.get("/api/auth.test").parsed
       end
-
     end
   end
 end
